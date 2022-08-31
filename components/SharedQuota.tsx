@@ -4,12 +4,12 @@ import styled from "styled-components";
 import Text from "./Text";
 
 interface IShareProp {
-  children: React.ReactNode;
+  Text: string;
   _id: any;
   UPAddress: string;
 }
 
-const SharedQuota: React.FC<IShareProp> = ({ children, _id, UPAddress }) => {
+const SharedQuota: React.FC<IShareProp> = ({ Text, _id, UPAddress }) => {
   const [_did, set_did] = useState();
   const [address, setaddress] = useState("");
 
@@ -29,7 +29,7 @@ const SharedQuota: React.FC<IShareProp> = ({ children, _id, UPAddress }) => {
 
   return (
     <SBox>
-      <SText>{children}</SText>
+      <SText>{Text}</SText>
       <Sdelete onClick={compDelete}>
         <img src="delete.png" alt="" />
       </Sdelete>

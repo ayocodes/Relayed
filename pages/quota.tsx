@@ -69,7 +69,7 @@ const Quota = () => {
           <SharedQuota
             _id={data._id}
             UPAddress={account}
-            children={data.UPAddress}
+            Text={data.UPAddress}
             key={i}
           />
         ))}
