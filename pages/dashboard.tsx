@@ -16,49 +16,81 @@ import "react-circular-progressbar/dist/styles.css";
 import QuotaContext from "../context/quota";
 import TQuotaContext from "../context/totalquota";
 import Router from "next/router";
+import Link from "next/link";
 
 const Dashboard: NextPage = () => {
   const [account, setAccount] = useContext(AccountContext);
   const [connected, setConnected] = useContext(ConnectContext);
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
-  const [value, setValue] = useState(0);
   const [quota, setQuota] = useContext(QuotaContext);
   const [totalQuota, setTotalQuota] = useContext(TQuotaContext);
 
   useEffect(() => {
-
-
     if (!connected) {
       Router.push("./");
     }
-    // const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
-    // const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
-    // // Parameters for ERC725 Instance
-    // const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
-    // const config = { ipfsGateway: IPFS_GATEWAY };
-    // setValue(100);
+    const RPC_ENDPOINT = "https://rpc.l16.lukso.network";
+    const IPFS_GATEWAY = "https://2eff.lukso.dev/ipfs/";
+    // Parameters for ERC725 Instance
+    const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
+    const config = { ipfsGateway: IPFS_GATEWAY };
     // async (account: string) => {
     //   try {
-    //     const profile = new ERC725(erc725schema, account, provider, config);
+    //     const profile = new ERC725((erc725schema as any), account, provider, config);
     //     await profile.fetchData("LSP3Profile");
     //     console.log(profile);
     //   } catch (error) {
     //     console.log("This is not an ERC725 Contract");
     //   }
     // };
+
+    async function fetchProfileData(address: string) {
+      try {
+        const profile = new ERC725(
+          erc725schema as any,
+          address,
+          provider,
+          config
+        );
+        return await profile.fetchData("LSP3Profile");
+      } catch (error) {
+        return console.log("This is not an ERC725 Contract");
+      }
+    }
+
+    console.log("lolololol");
+    fetchProfileData(account).then((profileData) => {
+      setName((profileData as any).value.LSP3Profile.name);
+      // const avatarUrl = (profileData as any).value.LSP3Profile.profileImage[0]
+      //   .url;
+      // console.log(JSON.stringify(profileData, undefined, 2))
+      // setAvatar("https://ipfs.io" + avatarUrl);
+      console.log(name, avatar);
+    });
   }, []);
 
-
-
+  // "value": {
+  //   "LSP3Profile": {
+  //     "name": "sender",
+  //     "description": "",
+  //     "links": [],
+  //     "tags": [],
+  //     "profileImage": [],
+  //     "backgroundImage": []
 
   return (
     <SMain>
       <SBox>
         <SBox1>
-          <Avatar height={"9.4rem"} imgUrl={"dp.jpg"} width={"9.4rem"} />
+          <Avatar
+            height={"9.4rem"}
+            imgUrl={"dp.jpg"}
+            // imgUrl={avatar}
+            width={"9.4rem"}
+          />
           <SBoxdet>
-            <Text type="h6">Hello there, Ayomide</Text>
+            <Text type="h6">Hello there, {name}</Text>
             <SText type="h6">{account}</SText>
           </SBoxdet>
         </SBox1>
@@ -82,7 +114,9 @@ const Dashboard: NextPage = () => {
             </SBox3>
             <SQdetails>
               <img src="bullet.svg" alt="" />
-              <SText1>{quota} of {totalQuota} rlyx left</SText1>
+              <SText1>
+                {quota} of {totalQuota} rlyx left
+              </SText1>
             </SQdetails>
             <SQdetails>
               <img src="bullet.svg" alt="" />
@@ -96,7 +130,13 @@ const Dashboard: NextPage = () => {
               <SText3>month</SText3>
             </SBox3>
             <SBox3>
-              <Button func={() => {}} color={"#939393"} borderColor={"#A592F2"}>
+              <Button
+                func={() => {
+                  window.location.replace("https://paystack.com/pay/relayed");
+                }}
+                color={"#939393"}
+                borderColor={"#A592F2"}
+              >
                 Get now
               </Button>
             </SBox3>
@@ -113,6 +153,10 @@ const SProgress = styled.div`
   height: 10rem;
   width: 10rem;
   margin: 1.2rem 0;
+`;
+
+const Sa = styled.a`
+  text-decoration: none;
 `;
 
 const SMain = styled.main`
@@ -189,3 +233,6 @@ const SText3 = styled.p`
   font-size: 3rem;
   padding: 1rem;
 `;
+function async() {
+  throw new Error("Function not implemented.");
+}
