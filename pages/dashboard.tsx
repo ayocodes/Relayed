@@ -17,7 +17,7 @@ import QuotaContext from "../context/quota";
 import TQuotaContext from "../context/totalquota";
 import Router from "next/router";
 
-const dashboard: NextPage = () => {
+const Dashboard: NextPage = () => {
   const [account, setAccount] = useContext(AccountContext);
   const [connected, setConnected] = useContext(ConnectContext);
   const [avatar, setAvatar] = useState("");
@@ -107,7 +107,7 @@ const dashboard: NextPage = () => {
   );
 };
 
-export default dashboard;
+export default Dashboard;
 
 const SProgress = styled.div`
   height: 10rem;

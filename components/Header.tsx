@@ -58,17 +58,19 @@ const Header = () => {
             <NavItem
               setActive={setActive}
               name={"transaction"}
-              children={"Transaction"}
               active={isActive("transaction")}
               route={"/transactions"}
-            />
+            >
+              Transaction
+            </NavItem>
             <NavItem
               setActive={setActive}
               name={"quota"}
-              children={"Quota"}
               active={isActive("quota")}
               route={"/quota"}
-            />
+            >
+              Quota
+            </NavItem>
           </Sdiv>
         ) : (
           ""

@@ -40,7 +40,7 @@ const Modal: React.FC = () => {
 
           <SText>
             You have been given free 50 rlyx to perform any transaction across
-            Lukso's Blockchain. Enjoy!
+            Lukso&apos;s Blockchain. Enjoy!
           </SText>
           <SBox4></SBox4>
           <Button func={close} color={'#161C30'} borderColor={"#A592F2"}>

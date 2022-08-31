@@ -12,7 +12,7 @@ interface IShareQuotaProps {
   UPAddress: string;
 }
 
-const quota = () => {
+const Quota = () => {
   const [account, setAccount] = useContext(AccountContext);
   const [connected, setConnected] = useContext(ConnectContext);
   const [recieverAddress, setRecieverAddress] = useState("");
@@ -63,7 +63,7 @@ const quota = () => {
         {!shareQuota?.length ? (
           ""
         ) : (
-          <Text type="h6">UPs you're sharing your quota with</Text>
+          <Text type="h6">UPs you&apos;re sharing your quota with</Text>
         )}
         {shareQuota?.map((data, i) => (
           <SharedQuota
@@ -130,4 +130,4 @@ const Sdiv = styled.div`
   margin-bottom: 3rem;
 `;
 
-export default quota;
+export default Quota;

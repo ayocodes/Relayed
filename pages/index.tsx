@@ -13,7 +13,7 @@ const Home = () => {
             <Sintro>
               Enjoy gasless transactions, choose a subscription plan and well,
               perform transactions!
-              {"\n"}But first, you'll have to connect to your wallet.
+              {"\n"}But first, you&apos;ll have to connect to your wallet.
             </Sintro>
             <ConnectButton />
           </SIntrowrite>
@@ -32,9 +32,9 @@ const Home = () => {
           <SFAQWrite>
             <SText type="h3">How does it work?</SText>
             <Text>
-              For our first time users, we give them 1 lyx which would be about
-              10 free transactions for them. After that, you pay for your
-              transactions per month.
+              For our first time users, you get a gift, free rlyks. And then you
+              pay monthly for rlyxs. A rlyx may be the approximately gas fees
+              for a transaction.
             </Text>
           </SFAQWrite>
         </SFAQBox>

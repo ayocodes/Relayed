@@ -7,7 +7,7 @@ import Button from "../components/Button";
 import Text from "../components/Text";
 import axios from "axios";
 
-const send = () => {
+const Send = () => {
   const [rAddress, setRAddress] = useState();
   const [amount, setAmount] = useState("");
   const [controllerAccount, setControllerAccount] = useState("");
@@ -131,4 +131,4 @@ const STextArea = styled.textarea`
   /* height: 3.4rem; */
 `;
 
-export default send;
+export default Send;

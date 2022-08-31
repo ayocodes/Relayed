@@ -3,7 +3,7 @@ import Router from "next/router";
 import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import Text from "../components/Text";
-import Transaction from "../components/Transaction";
+import TransactionComp from "../components/TransactionComp";
 import AccountContext from "../context/account";
 import ConnectContext from "../context/connect";
 
@@ -15,7 +15,7 @@ interface ITransactionProps {
   gasUsed: number;
 }
 
-const transaction = () => {
+const Transaction = () => {
   const [account, setAccount] = useContext(AccountContext);
   const [connected, setConnected] = useContext(ConnectContext);
   const [transactions, setTransactions] = useState<ITransactionProps[]>();
@@ -46,7 +46,7 @@ const transaction = () => {
           ""
         )}
         {transactions?.map((transaction, i) => (
-          <Transaction
+          <TransactionComp
             key={i}
             transactionHash={transaction.transactionHash}
             EOAAccount={transaction.controllerAccount}
@@ -70,4 +70,4 @@ const SBox = styled.div`
   margin: 2rem;
 `;
 
-export default transaction;
+export default Transaction;
