@@ -63,7 +63,7 @@ const ConnectButton = () => {
         Router.push("./dashboard");
 
         axios
-          .get(`http://localhost:5000/user/newuser/${accountsRequest[0]}`)
+          .get(`https://relayed-service.herokuapp.com/user/newuser/${accountsRequest[0]}`)
           .then((user) => {
             if (user.data[0].newUser) {
               setNewUser(true);

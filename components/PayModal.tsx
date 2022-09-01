@@ -25,7 +25,7 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
     callback: function (response: { reference: string }) {
       console.log("callback not working");
       console.log(response.reference);
-      axios.post(`http://localhost:5000/user/verifyTransaction`, {
+      axios.post(`https://relayed-service.herokuapp.com/user/verifyTransaction`, {
         response: response.reference,
         UPAddress: account,
       });

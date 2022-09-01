@@ -67,7 +67,7 @@ const Send = () => {
 
       console.log(deliver);
 
-      axios.put("http://localhost:5000/user/execute", deliver);
+      axios.put("https://relayed-service.herokuapp.com/user/execute", deliver);
     });
   };
   return (

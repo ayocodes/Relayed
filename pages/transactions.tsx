@@ -23,7 +23,7 @@ const Transaction = () => {
   useEffect(() => {
     console.log(account);
     axios
-      .get(`http://localhost:5000/user/transactions/${account}`)
+      .get(`https://relayed-service.herokuapp.com/user/transactions/${account}`)
       .then((transactionData) => {
         const transaction = transactionData.data[0].transaction;
         setTransactions(transaction);

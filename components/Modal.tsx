@@ -14,7 +14,7 @@ const Modal: React.FC = () => {
 
   const close = () => {
     setNewUser(false);
-    axios.put('http://localhost:5000/user/update', {UPAddress: account})
+    axios.put('https://relayed-service.herokuapp.com/user/update', {UPAddress: account})
   };
 
   if (!newUser) {

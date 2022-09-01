@@ -21,7 +21,7 @@ const Quota = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/user/transactions/${account}`)
+      .get(`https://relayed-service.herokuapp.com/user/transactions/${account}`)
       .then((data) => {
         const quotaData = data.data[0].shareQuota;
         const receiveQuota = data.data[0].receiveQuota[0].UPAddress;
@@ -45,7 +45,7 @@ const Quota = () => {
     shareQuota &&
       setShareQuota([...shareQuota, { _id: 0, UPAddress: recieverAddress }]);
 
-    axios.put("http://localhost:5000/user/updateQuotaStatus", addData);
+    axios.put("https://relayed-service.herokuapp.com/user/updateQuotaStatus", addData);
   };
 
   return (

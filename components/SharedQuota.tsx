@@ -23,7 +23,7 @@ const SharedQuota: React.FC<IShareProp> = ({ Text, _id, UPAddress }) => {
       _id: _did,
       UPAddress: address,
     };
-    axios.delete("http://localhost:5000/user/delete", { data: deleteData });
+    axios.delete("https://relayed-service.herokuapp.com/user/delete", { data: deleteData });
 
   };
 
