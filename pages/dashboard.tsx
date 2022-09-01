@@ -68,8 +68,8 @@ const Dashboard: NextPage = () => {
         <SBox1>
           <Avatar
             height={"9.4rem"}
-            imgUrl={"dp.jpg"}
-            // imgUrl={avatar}
+            // imgUrl={"dp.jpg"}
+            imgUrl={avatar}
             width={"9.4rem"}
           />
           <SBoxdet>
@@ -109,7 +109,7 @@ const Dashboard: NextPage = () => {
           <SBound>
             <SHeader>Quota finished? buy more here</SHeader>
             <SBox3>
-              <SText3>5K naira/</SText3>
+              <SText3>5K Naira/</SText3>
               <SText3>month</SText3>
             </SBox3>
             <SBox3>
@@ -217,6 +217,7 @@ const SBound = styled(Bound)`
 const SText3 = styled.p`
   font-size: 3rem;
   padding: 1rem;
+  font-weight: 600;
 `;
 function async() {
   throw new Error("Function not implemented.");

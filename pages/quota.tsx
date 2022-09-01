@@ -17,16 +17,19 @@ const Quota = () => {
   const [connected, setConnected] = useContext(ConnectContext);
   const [recieverAddress, setRecieverAddress] = useState("");
   const [shareQuota, setShareQuota] = useState<IShareQuotaProps[]>();
+  const [receiveQuota, setreceiveQuota] = useState("");
 
   useEffect(() => {
-    console.log(account);
     axios
       .get(`http://localhost:5000/user/transactions/${account}`)
       .then((data) => {
         const quotaData = data.data[0].shareQuota;
+        const receiveQuota = data.data[0].receiveQuota[0].UPAddress;
+        console.log(receiveQuota);
+        setreceiveQuota(receiveQuota);
+
         setShareQuota(quotaData);
       });
-
 
     if (!connected) {
       Router.push("./");
@@ -45,10 +48,15 @@ const Quota = () => {
     axios.put("http://localhost:5000/user/updateQuotaStatus", addData);
   };
 
-
   return (
     <SMain>
       <SBox>
+        {!receiveQuota?.length ? (
+          ""
+        ) : (
+          <Text>User {receiveQuota} is sharing their quota with you</Text>
+        )}
+        <br />
         <Text type={"h6"}>Share quota with</Text>
         <Sdiv>
           <STextArea
