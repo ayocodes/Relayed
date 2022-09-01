@@ -11,10 +11,12 @@ import ConnectContext from "../context/connect";
 import Avatar from "./Avatar";
 import ConnectButton from "./ConnectButton";
 import NavItem from "./NavItem";
+import AvatarContext from "../context/avatar";
 
 const Header = () => {
   const [connected, setConnected] = useContext(ConnectContext);
   const [active, setActive] = useState("");
+  const [avatar, setAvatar] = useContext(AvatarContext);
   const router = useRouter();
   const route = router.route;
 
@@ -76,7 +78,7 @@ const Header = () => {
           ""
         )}
         {connected ? (
-          <Avatar height={"3.75rem"} imgUrl={"/dp.jpg"} width={"3.75rem"} />
+          <Avatar height={"3.75rem"} imgUrl={avatar} width={"3.75rem"} />
         ) : (
           <ConnectButton />
         )}

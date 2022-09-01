@@ -17,11 +17,12 @@ import AccountContext from "../context/account";
 import ConnectContext from "../context/connect";
 import QuotaContext from "../context/quota";
 import TQuotaContext from "../context/totalquota";
+import AvatarContext from "../context/avatar";
 
 const Dashboard: NextPage = () => {
   const [account, setAccount] = useContext(AccountContext);
   const [connected, setConnected] = useContext(ConnectContext);
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useContext(AvatarContext);
   const [name, setName] = useState("");
   const [quota, setQuota] = useContext(QuotaContext);
   const [totalQuota, setTotalQuota] = useContext(TQuotaContext);

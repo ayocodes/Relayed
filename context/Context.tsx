@@ -7,6 +7,7 @@ import ConnectContext from "./connect";
 import NewUserContext from "./newuser";
 import QuotaContext from "./quota";
 import TQuotaContext from "./totalquota";
+import AvatarContext from "./avatar";
 
 export default function Context({ children }: { children: any }) {
   const [theme, setTheme] = useState("dark");
@@ -15,6 +16,8 @@ export default function Context({ children }: { children: any }) {
   const [newUser, setNewUser] = useState(false);
   const [quota, setQuota] = useState();
   const [totalQuota, setTotalQuota] = useState();
+  const [avatar, setAvatar] = useState("");
+
   return (
     <ThemeContext.Provider value={setTheme}>
       <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
@@ -23,7 +26,9 @@ export default function Context({ children }: { children: any }) {
             <NewUserContext.Provider value={[newUser, setNewUser]}>
               <TQuotaContext.Provider value={[totalQuota, setTotalQuota]}>
                 <QuotaContext.Provider value={[quota, setQuota]}>
-                  {children}
+                  <AvatarContext.Provider value={[avatar, setAvatar]}>
+                    {children}
+                  </AvatarContext.Provider>
                 </QuotaContext.Provider>
               </TQuotaContext.Provider>
             </NewUserContext.Provider>
