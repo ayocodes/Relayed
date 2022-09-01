@@ -1,22 +1,22 @@
+import { ERC725 } from "@erc725/erc725.js";
 import type { NextPage } from "next";
 import Web3 from "web3";
-import { ERC725 } from "@erc725/erc725.js";
 // import from 'isomorphic-fetch';
 import erc725schema from "@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json";
+import Router from "next/router";
+import { useContext, useEffect, useState } from "react";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import styled from "styled-components";
 import Avatar from "../components/Avatar";
-import Text from "../components/Text";
 import Bound from "../components/Bound";
 import Button from "../components/Button";
-import React, { useEffect, useState, useContext } from "react";
+import PayModal from "../components/PayModal";
+import Text from "../components/Text";
 import AccountContext from "../context/account";
 import ConnectContext from "../context/connect";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 import QuotaContext from "../context/quota";
 import TQuotaContext from "../context/totalquota";
-import Router from "next/router";
-import Link from "next/link";
 
 const Dashboard: NextPage = () => {
   const [account, setAccount] = useContext(AccountContext);
@@ -25,6 +25,7 @@ const Dashboard: NextPage = () => {
   const [name, setName] = useState("");
   const [quota, setQuota] = useContext(QuotaContext);
   const [totalQuota, setTotalQuota] = useContext(TQuotaContext);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     if (!connected) {
@@ -35,15 +36,6 @@ const Dashboard: NextPage = () => {
     // Parameters for ERC725 Instance
     const provider = new Web3.providers.HttpProvider(RPC_ENDPOINT);
     const config = { ipfsGateway: IPFS_GATEWAY };
-    // async (account: string) => {
-    //   try {
-    //     const profile = new ERC725((erc725schema as any), account, provider, config);
-    //     await profile.fetchData("LSP3Profile");
-    //     console.log(profile);
-    //   } catch (error) {
-    //     console.log("This is not an ERC725 Contract");
-    //   }
-    // };
 
     async function fetchProfileData(address: string) {
       try {
@@ -59,7 +51,6 @@ const Dashboard: NextPage = () => {
       }
     }
 
-    console.log("lolololol");
     fetchProfileData(account).then((profileData) => {
       setName((profileData as any).value.LSP3Profile.name);
       // const avatarUrl = (profileData as any).value.LSP3Profile.profileImage[0]
@@ -70,14 +61,6 @@ const Dashboard: NextPage = () => {
     });
   }, []);
 
-  // "value": {
-  //   "LSP3Profile": {
-  //     "name": "sender",
-  //     "description": "",
-  //     "links": [],
-  //     "tags": [],
-  //     "profileImage": [],
-  //     "backgroundImage": []
 
   return (
     <SMain>
@@ -132,7 +115,8 @@ const Dashboard: NextPage = () => {
             <SBox3>
               <Button
                 func={() => {
-                  window.location.replace("https://paystack.com/pay/relayed");
+                  // window.location.replace("https://paystack.com/pay/relayed");
+                  setModal(true);
                 }}
                 color={"#939393"}
                 borderColor={"#A592F2"}
@@ -140,6 +124,7 @@ const Dashboard: NextPage = () => {
                 Get now
               </Button>
             </SBox3>
+            <PayModal modal={modal} setModal={setModal} />
           </SBound>
         </SBox2>
       </SBox>

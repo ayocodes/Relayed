@@ -57,13 +57,9 @@ const ConnectButton = () => {
         (signature as any).signature
       );
       const sigAddress = (signature as any).address;
-      console.log(sigAddress);
-      console.log(address);
 
       if (sigAddress == address) {
-        console.log(`${accountsRequest[0]} account address`);
         setAccount(accountsRequest[0]);
-        setConnected(true);
         Router.push("./dashboard");
 
         axios
@@ -75,7 +71,7 @@ const ConnectButton = () => {
             setQuota(user.data[0].quota.remainingQuota);
             setTotalQuota(user.data[0].quota.totalQuota);
           });
-
+        setConnected(true);
         return;
       }
     });
