@@ -69,8 +69,8 @@ const Dashboard: NextPage = () => {
         <SBox1>
           <Avatar
             height={"9.4rem"}
-            imgUrl={"dp.jpg"}
-            // imgUrl={avatar}
+            // imgUrl={"dp.jpg"}
+            imgUrl={avatar}
             width={"9.4rem"}
           />
           <SBoxdet>
