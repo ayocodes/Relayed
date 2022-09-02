@@ -54,6 +54,8 @@ Relayed is a transaction relay service submitted for Lukso's hackathon. It offer
   TotalQuota: total quota left
   }
 
+  **The relayer can be tested with [sending lyxs](https://relayed-ten.vercel.app/send)** 
+
 ### Technologies used
 
 - Nextjs

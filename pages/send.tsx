@@ -74,7 +74,7 @@ const Send = () => {
     <SMain>
       <SBox>
         <label>
-          <Text>send to 0x4a6f470298038bde612bc4d6055f3232737ae3f2</Text>
+          <Text>send to </Text>
           <STextArea
             value={rAddress}
             onChange={(e) => setRAddress(e.target.value as any)}
@@ -91,7 +91,7 @@ const Send = () => {
         </label>
         <label>
           <Text>
-            controllerAccount 0x24a69C92f7b4D5D913e385cCf04B5e60dc241A43
+            controllerAccount 
           </Text>
           <STextArea
             value={controllerAccount}
