@@ -145,7 +145,7 @@ const SP = styled("p")<IText>`
   color: ${({ theme, color }) => (color ? color : theme.text1)};
   user-select: ${({ userSelect }) => (userSelect ? "none" : "")};
   transition: all 2s;
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.fontSize};`;
   /* position: relative; */
   /* z-index: 2; */
 
@@ -162,7 +162,7 @@ const SP = styled("p")<IText>`
     vertical-align: -1rem;
     height: 0.5rem;
   } */
-`;
+
 
 SP.defaultProps = {
   fontSize: "1rem",

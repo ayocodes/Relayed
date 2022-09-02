@@ -167,4 +167,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+
+export const GlobalStyles = createGlobalStyle`
+  body {
+    background: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.text1};
+    transition: background 0.2s ease-in, color 0.2s ease-in;
+  }
+`;
+
 export default GlobalStyle;

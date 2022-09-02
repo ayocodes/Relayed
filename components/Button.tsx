@@ -28,8 +28,8 @@ const SButton = styled.div<ISButtonProps>`
   cursor: pointer;
 
   :hover {
-    border: ${({ borderColor }) => `2px solid ${borderColor}`};
-    transition: all 250ms;
+    border: 3px solid #A592F2;
+    transition: all 500ms;
   }
 `;
 

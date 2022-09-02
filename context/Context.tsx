@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../constant/theme";
-import ThemeContext from "./theme";
+import ThemeContext from "./theme2";
 import AccountContext from "./account";
 import ConnectContext from "./connect";
 import NewUserContext from "./newuser";
@@ -19,7 +19,8 @@ export default function Context({ children }: { children: any }) {
   const [avatar, setAvatar] = useState("");
 
   return (
-    <ThemeContext.Provider value={setTheme}>
+    // <ThemeContext.Provider value={setTheme}>
+    <ThemeContext.Provider value={[theme, setTheme]}>
       <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
         <ConnectContext.Provider value={[connected, setConnected]}>
           <AccountContext.Provider value={[account, setAccount]}>

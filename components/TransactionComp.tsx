@@ -44,9 +44,9 @@ const Transaction: React.FC<ITransactionProps> = ({
     <SBox>
       <Sstatus>
         {status ? (
-          <img src="successB.svg" alt="success" />
+          <img src="successNew.svg" alt="success" />
         ) : (
-          <img src="failedB.svg" alt="failed" />
+          <img src="failedNew.svg" alt="failed" />
         )}
         <div>
           <SText2 type="h6">EOA: {EOAAccount}</SText2>

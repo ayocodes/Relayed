@@ -1,10 +1,10 @@
 import { DefaultTheme } from "styled-components";
 
 export const lightTheme: DefaultTheme = {
-  backgroundColor: "#F6F8FC", 
-  nav: "#21273f",
+  backgroundColor: "#FFFFFF", 
+  nav: "#E1E2E2",
   donation:"",
-  primary: "#FFFFFF", //for the cards
+  primary: "#F6F8FC", //for the cards
   accent1: "#939393", //for button rest phase
   accent2: "",
   accent3: "",
@@ -15,7 +15,7 @@ export const lightTheme: DefaultTheme = {
   text3: "", 
   border: "#D3E3FD", //statistics and buttons
   borderHover: "",
-  modal: "",
+  modal: "#C0C7D4",
   error: "#",
   warn: "#",
   dark: false,

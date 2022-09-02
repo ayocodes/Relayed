@@ -99,7 +99,7 @@ const Send = () => {
             required
           />
         </label>
-        <Button func={send} color={""} borderColor={"purple"}>
+        <Button func={send} color={"#939393"} borderColor={"purple"}>
           send
         </Button>
       </SBox>
@@ -123,7 +123,7 @@ const STextArea = styled.textarea`
   font-weight: 400;
   padding: 15px 1rem;
   border-radius: 0.5rem;
-  color: white;
+  color: ${({ theme }) => theme.text1};
   background-color: transparent;
   resize: none;
   outline: none;

@@ -24,7 +24,9 @@ const SButton = styled.div`
   cursor: pointer;
 
   :hover {
-    border: 2px solid #b566c1;
+    border: 3px solid #b75dee;
+    /* background: linear-gradient(269.7deg, #3646d9 0.11%, #b75dee 91.18%); */
+
     transition: all 250ms;
   }
 `;

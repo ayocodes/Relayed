@@ -107,8 +107,10 @@ const SText = styled(Text)`
 
 const Simg = styled.img`
   /* width: 100%; */
-  height: 23rem;
-  width: 32rem;
+  /* height: 23rem; */
+  width: 30rem;
+  border-radius: 3rem;
+  margin-left:2rem;
 `;
 
 export default Home;
