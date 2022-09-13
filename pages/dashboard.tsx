@@ -1,7 +1,6 @@
 import { ERC725 } from "@erc725/erc725.js";
 import type { NextPage } from "next";
 import Web3 from "web3";
-// import from 'isomorphic-fetch';
 import erc725schema from "@erc725/erc725.js/schemas/LSP3UniversalProfileMetadata.json";
 import Router from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -18,15 +17,20 @@ import ConnectContext from "../context/connect";
 import QuotaContext from "../context/quota";
 import TQuotaContext from "../context/totalquota";
 import AvatarContext from "../context/avatar";
+import axios from "axios";
 
 const Dashboard: NextPage = () => {
   const [account, setAccount] = useContext(AccountContext);
   const [connected, setConnected] = useContext(ConnectContext);
   const [avatar, setAvatar] = useContext(AvatarContext);
   const [name, setName] = useState("");
-  const [quota, setQuota] = useContext(QuotaContext);
-  const [totalQuota, setTotalQuota] = useContext(TQuotaContext);
+  // const [quota, setQuota] = useContext(QuotaContext);
+  // const [totalQuota, setTotalQuota] = useContext(TQuotaContext);
   const [modal, setModal] = useState(false);
+  const [totalQuota, setTotalQuota] = useState(0);
+  const [quota, setQuota] = useState(0);
+
+
 
   useEffect(() => {
     if (!connected) {
@@ -54,13 +58,15 @@ const Dashboard: NextPage = () => {
 
     fetchProfileData(account).then((profileData) => {
       setName((profileData as any).value.LSP3Profile.name);
-      // const avatarUrl = (profileData as any).value.LSP3Profile.profileImage[0]
-      //   .url;
-      // console.log(JSON.stringify(profileData, undefined, 2))
-      // setAvatar("https://ipfs.io" + avatarUrl);
-      console.log(name, avatar);
     });
-  }, []);
+
+    axios
+    .get(`https://relayed-service.herokuapp.com/user/newuser/${account}`)
+    .then((user) => {
+      setQuota(user.data[0].quota.remainingQuota);
+      setTotalQuota(user.data[0].quota.totalQuota);
+    });
+  });
 
 
   return (
@@ -74,7 +80,8 @@ const Dashboard: NextPage = () => {
             width={"9.4rem"}
           />
           <SBoxdet>
-            <Text type="h6">Hello there, {name}</Text>
+            <Text type="h6">Hello there, {name}
+            </Text>
             <SText type="h6">{account}</SText>
           </SBoxdet>
         </SBox1>

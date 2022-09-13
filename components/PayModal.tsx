@@ -12,6 +12,7 @@ interface IPayProps {
 
 const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
   const publicKey = "pk_test_6628c7bb8c59f5bdff14cb747b12cd2f8b419b2d";
+  // const reference = new Date().getTime().toString();
   const amount = 500000; //  in kobo
   const [email, setEmail] = useState("");
   const [account, setAccount] = useContext(AccountContext);
@@ -20,15 +21,37 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
     email,
     amount,
     publicKey,
+    // reference,
     text: "Pay Now",
-
-    callback: function (response: { reference: string }) {
-      console.log("callback not working");
-      console.log(response.reference);
-      axios.post(`https://relayed-service.herokuapp.com/user/verifyTransaction`, {
-        response: response.reference,
+    onSuccess: (reference: any) => {
+      // console.log(reference);
+      // console.log(reference.reference);
+      // console.log(reference.message);
+      const response = {
         UPAddress: account,
-      });
+        reference: reference.reference,
+        message: reference.message,
+      }
+      console.log(response)
+      axios.put(
+        `https://relayed-service.herokuapp.com/user/verifyTransaction`,
+        {
+          UPAddress: account,
+          reference: reference.reference,
+          message: reference.message,
+        }
+      );
+    },
+    callback: function (reference: string) {
+      console.log(reference);
+      axios.post(
+        `https://relayed-service.herokuapp.com/user/verifyTransaction`,
+        {
+          response: reference,
+          UPAddress: account,
+        }
+      );
+      return true;
     },
   };
 
@@ -56,12 +79,12 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
 
 const SBox = styled.div`
   margin-bottom: 2rem;
-`
+`;
 
 const SBox2 = styled.div`
-  display:flex ;
+  display: flex;
   justify-content: center;
-`
+`;
 
 const SModal = styled.div`
   position: fixed;

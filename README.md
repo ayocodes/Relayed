@@ -2,8 +2,8 @@
 
 Relayed is a transaction relay service submitted for Lukso's hackathon. It offers a subscription service where users can pay for monthly subscriptions and then they can perform gasless transactions through the relay service provider.
 
-[Watch a quick demo ](https://www.loom.com/share/941830ba523f48b2ace5cca48d954552)
-[Try out the app ](https://relayed-ten.vercel.app/dashboard)
+[Watch a quick demo ](https://www.loom.com/share/941830ba523f48b2ace5cca48d954552) <br />
+[Try out the app ](https://relayed-ten.vercel.app/dashboard) <br />
 [Check out the server](https://github.com/ayocodes/relayedServer)
 
 ## How it works
@@ -22,14 +22,17 @@ Relayed is a transaction relay service submitted for Lukso's hackathon. It offer
   AbiPayload: abiPayload
   };
   <br />
+  **To get the result of the transaction, send a get request to**
+  "https://relayed-service.herokuapp.com/user/transactions/:UPAddress"
+  <br />
 
   **It returns**
   {
   Success: true
   ControllerAccount: EOA
-  Cate: Date()
-  TransactionHash: executeRelayCallTransaction.transactionHash
-  GasUsed: executeRelayCallTransaction.cumulativeGasUsed
+  Date: Date
+  TransactionHash: transactionHash
+  GasUsed: cumulativeGasUsed
   }
   <br />
   <br />
@@ -54,7 +57,7 @@ Relayed is a transaction relay service submitted for Lukso's hackathon. It offer
   TotalQuota: total quota left
   }
 
-  **The relayer can be tested with [sending lyxs](https://relayed-ten.vercel.app/send)** 
+  **The relayer can be tested with [sending lyxs](https://relayed-ten.vercel.app/send)**
 
 ### Technologies used
 

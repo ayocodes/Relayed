@@ -1,26 +1,17 @@
 import { useRouter } from "next/router";
-import {
-  SetStateAction,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "../constant/theme";
+import { useCallback, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import AvatarContext from "../context/avatar";
 import ConnectContext from "../context/connect";
+import ThemeContext from "../context/theme2";
 import Avatar from "./Avatar";
 import ConnectButton from "./ConnectButton";
 import NavItem from "./NavItem";
-import AvatarContext from "../context/avatar";
-import ThemeContext from "../context/theme2";
 
 const Header = () => {
   const [connected, setConnected] = useContext(ConnectContext);
   const [active, setActive] = useState("");
   const [avatar, setAvatar] = useContext(AvatarContext);
-  // const [theme, setTheme] = useState("light");
   const [theme, setTheme] = useContext(ThemeContext);
   const router = useRouter();
   const route = router.route;
@@ -86,20 +77,24 @@ const Header = () => {
           ""
         )}
         <SBox2>
+          <SBox1 onClick={themeToggler}>
+            {theme === "light" ? (
+              <Simg src="darkMode.svg" alt="darkMode" />
+            ) : (
+              <Simg src="lightMode.svg" alt="lightMode" />
+            )}
+          </SBox1>
 
-        <SBox1 onClick={themeToggler}>
-          {theme === "light" ? (
-            <Simg src="darkMode.svg" alt="darkMode" />
+          {connected ? (
+            <Avatar
+              height={"3.75rem"}
+              // imgUrl={"dp.jpg"}
+              imgUrl={avatar}
+              width={"3.75rem"}
+            />
           ) : (
-            <Simg src="lightMode.svg" alt="lightMode" />
+            <ConnectButton />
           )}
-        </SBox1>
-
-        {connected ? (
-          <Avatar height={"3.75rem"} imgUrl={avatar} width={"3.75rem"} />
-        ) : (
-          <ConnectButton />
-        )}
         </SBox2>
       </SBox>
     </SHeader>
@@ -109,7 +104,7 @@ const SHeader = styled.div`
   display: flex;
   justify-content: center;
   border-bottom: ${({ theme }) => `2px solid ${theme.nav}`};
-  background-color: ${(({theme}) => theme.backgroundColor)};
+  background-color: ${({ theme }) => theme.backgroundColor};
 
   position: sticky;
   top: 0;
@@ -125,11 +120,10 @@ const SBox1 = styled.div`
   height: 3rem;
   display: grid;
   place-items: center;
-  background-color: ${(({theme}) => theme.primary)};
+  background-color: ${({ theme }) => theme.primary};
   border-radius: 50%;
   :hover {
-    background-color: ${(({theme}) => theme.modal)};
-
+    background-color: ${({ theme }) => theme.modal};
   }
 `;
 
@@ -140,7 +134,6 @@ const SBox = styled.div`
   justify-content: space-between;
   margin: 1rem 2rem;
   align-items: center;
-  /* padding: 0 1rem; */
 `;
 
 const SNavItem = styled(NavItem)`
@@ -150,7 +143,6 @@ const SNavItem = styled(NavItem)`
 
   width: min-content;
   line-height: 1.3;
-  /* background: linear-gradient(#aa68df 98.89%, #4f56e2 53.38%); */
   background: linear-gradient(269.7deg, #3646d9 0.11%, #b75dee 91.18%);
   background-clip: text;
   -webkit-background-clip: text;
