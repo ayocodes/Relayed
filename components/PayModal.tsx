@@ -22,10 +22,10 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
     amount,
     publicKey,
     text: "Pay Now",
-    onSuccess: (reference: any) => {
-      const data = reference
-      console.log(data)
-      handleSuccess(data)},
+    // onSuccess: (reference: any) => {
+    //   const data = reference
+    //   console.log(data)
+    //   handleSuccess(data)},
     // onSuccess: (reference: any) => {
     //   const data:any = reference
       
