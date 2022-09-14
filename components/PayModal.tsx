@@ -11,6 +11,7 @@ interface IPayProps {
 }
 
 const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
+  const reference = (new Date()).getTime().toString();
   const publicKey = "pk_test_6628c7bb8c59f5bdff14cb747b12cd2f8b419b2d";
   const amount = 500000; //  in kobo
   const [email, setEmail] = useState("");
@@ -18,14 +19,13 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
 
 
   const componentProps = {
+    reference,
     email,
     amount,
     publicKey,
     text: "Pay Now",
-    // onSuccess: (reference: any) => {
-    //   const data = reference
-    //   console.log(data)
-    //   handleSuccess(data)},
+    onSuccess: (reference: any) => {
+      handleSuccess(reference)},
     // onSuccess: (reference: any) => {
     //   const data:any = reference
       
@@ -46,19 +46,13 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
     // },
   };
 
-  const handleSuccess = (data: any) =>{
-    const response = {
-      UPAddress: account,
-      reference: data.reference,
-      message: data.message,
-    }
-    console.log(response)
+  const handleSuccess = (reference: any) =>{
     axios.put(
       `https://relayed-service.herokuapp.com/user/verifyTransaction`,
       {
         UPAddress: account,
-        reference: data.reference,
-        message: data.message,
+        reference: reference.reference,
+        message: reference.message,
       }
     );
 
