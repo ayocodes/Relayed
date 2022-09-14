@@ -4,6 +4,7 @@ import AccountContext from "../context/account";
 import React, { useEffect, useState, useContext } from "react";
 import { PaystackButton } from "react-paystack";
 import axios from "axios";
+import { callback } from "react-paystack/dist/types";
 
 interface IPayProps {
   modal: boolean;
@@ -16,46 +17,43 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
   const [email, setEmail] = useState("");
   const [account, setAccount] = useContext(AccountContext);
 
+  const onSuccess = (reference: any) => {
+    handleSuccess(reference);
+  };
 
   const componentProps = {
     email,
     amount,
     publicKey,
     text: "Pay Now",
-    onSuccess: (reference:any) => {
-      handleSuccess(reference)},
+    onSuccess: onSuccess as callback,
     // onSuccess: (reference: any) => {
     //   const data:any = reference
-      
-      // const response = {
-      //   UPAddress: account,
-      //   reference: reference.reference,
-      //   message: reference.message,
-      // }
-      // console.log(response)
-      // axios.put(
-      //   `https://relayed-service.herokuapp.com/user/verifyTransaction`,
-      //   {
-      //     UPAddress: account,
-      //     reference: reference.reference,
-      //     message: reference.message,
-      //   }
-      // );
+
+    // const response = {
+    //   UPAddress: account,
+    //   reference: reference.reference,
+    //   message: reference.message,
+    // }
+    // console.log(response)
+    // axios.put(
+    //   `https://relayed-service.herokuapp.com/user/verifyTransaction`,
+    //   {
+    //     UPAddress: account,
+    //     reference: reference.reference,
+    //     message: reference.message,
+    //   }
+    // );
     // },
   };
 
-  const handleSuccess = (reference: any) =>{
-    axios.put(
-      `https://relayed-service.herokuapp.com/user/verifyTransaction`,
-      {
-        UPAddress: account,
-        reference: reference.reference,
-        message: reference.message,
-      }
-    );
-
-  }
-
+  const handleSuccess = (reference: any) => {
+    axios.put(`https://relayed-service.herokuapp.com/user/verifyTransaction`, {
+      UPAddress: account,
+      reference: reference.reference,
+      message: reference.message,
+    });
+  };
 
   if (!modal) {
     return null;
