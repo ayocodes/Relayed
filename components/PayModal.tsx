@@ -11,7 +11,6 @@ interface IPayProps {
 }
 
 const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
-  const reference = (new Date()).getTime().toString();
   const publicKey = "pk_test_6628c7bb8c59f5bdff14cb747b12cd2f8b419b2d";
   const amount = 500000; //  in kobo
   const [email, setEmail] = useState("");
@@ -19,12 +18,11 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
 
 
   const componentProps = {
-    reference,
     email,
     amount,
     publicKey,
     text: "Pay Now",
-    onSuccess: (reference: any) => {
+    onSuccess: (reference:any) => {
       handleSuccess(reference)},
     // onSuccess: (reference: any) => {
     //   const data:any = reference
