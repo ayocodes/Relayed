@@ -23,22 +23,47 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
     publicKey,
     text: "Pay Now",
     onSuccess: (reference: any) => {
-      const response = {
-        UPAddress: account,
-        reference: reference.reference,
-        message: reference.message,
-      }
-      console.log(response)
-      axios.put(
-        `https://relayed-service.herokuapp.com/user/verifyTransaction`,
-        {
-          UPAddress: account,
-          reference: reference.reference,
-          message: reference.message,
-        }
-      );
-    },
+      const data = reference
+      console.log(data)
+      handleSuccess(data)},
+    // onSuccess: (reference: any) => {
+    //   const data:any = reference
+      
+      // const response = {
+      //   UPAddress: account,
+      //   reference: reference.reference,
+      //   message: reference.message,
+      // }
+      // console.log(response)
+      // axios.put(
+      //   `https://relayed-service.herokuapp.com/user/verifyTransaction`,
+      //   {
+      //     UPAddress: account,
+      //     reference: reference.reference,
+      //     message: reference.message,
+      //   }
+      // );
+    // },
   };
+
+  const handleSuccess = (data: any) =>{
+    const response = {
+      UPAddress: account,
+      reference: data.reference,
+      message: data.message,
+    }
+    console.log(response)
+    axios.put(
+      `https://relayed-service.herokuapp.com/user/verifyTransaction`,
+      {
+        UPAddress: account,
+        reference: data.reference,
+        message: data.message,
+      }
+    );
+
+  }
+
 
   if (!modal) {
     return null;
