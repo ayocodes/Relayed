@@ -38,17 +38,6 @@ const PayModal: React.FC<IPayProps> = ({ modal, setModal }) => {
         }
       );
     },
-    callback: function (reference: string) {
-      console.log(reference);
-      axios.post(
-        `https://relayed-service.herokuapp.com/user/verifyTransaction`,
-        {
-          response: reference,
-          UPAddress: account,
-        }
-      );
-      return true;
-    },
   };
 
   if (!modal) {
