@@ -14,6 +14,16 @@ color: string;
 borderColor: string;
 }
 
+const Button: React.FC<IButtonProps> = ({children, func, color, borderColor}) => {
+  return (
+    <SButton onClick={func} color = {color} borderColor={borderColor}>
+        <Text type="h6">{children}</Text>
+    </SButton>
+  );
+};
+
+export default Button;
+
 const SButton = styled.div<ISButtonProps>`
   height: 3rem;
   width: 13rem;
@@ -33,12 +43,3 @@ const SButton = styled.div<ISButtonProps>`
   }
 `;
 
-const Button: React.FC<IButtonProps> = ({children, func, color, borderColor}) => {
-  return (
-    <SButton onClick={func} color = {color} borderColor={borderColor}>
-        <Text type="h6">{children}</Text>
-    </SButton>
-  );
-};
-
-export default Button;

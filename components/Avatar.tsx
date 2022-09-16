@@ -1,6 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
+const Avatar: React.FC<IAvatarProps> = ({
+  className,
+  imgUrl,
+  height,
+  width
+}) => {
+  return <SAvatar className={className} src={imgUrl} height={height} width={width} />;
+};
+
+export default Avatar;
+
 interface IAvatarProps {
   className?: any;
   imgUrl?: string;
@@ -21,13 +32,3 @@ const SAvatar = styled.img<ISAvatarProps>`
 
 `;
 
-const Avatar: React.FC<IAvatarProps> = ({
-  className,
-  imgUrl,
-  height,
-  width
-}) => {
-  return <SAvatar className={className} src={imgUrl} height={height} width={width} />;
-};
-
-export default Avatar;

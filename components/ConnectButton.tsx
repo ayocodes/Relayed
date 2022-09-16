@@ -10,33 +10,10 @@ import Web3 from "web3";
 import Router from "next/router";
 import axios from "axios";
 
-const SButton = styled.div`
-  height: 3rem;
-  width: 13rem;
-  padding: 0 2.5rem;
-  border: 2px solid #939393;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  user-select: none;
-  cursor: pointer;
-
-  :hover {
-    border: 3px solid #b75dee;
-    /* background: linear-gradient(269.7deg, #3646d9 0.11%, #b75dee 91.18%); */
-
-    transition: all 250ms;
-  }
-`;
-
 const ConnectButton = () => {
   const [account, setAccount] = useContext(AccountContext);
   const [connected, setConnected] = useContext(ConnectContext);
   const [newUser, setNewUser] = useContext(NewUserContext);
-  const [quota, setQuota] = useContext(QuotaContext);
-  const [totalQuota, setTotalQuota] = useContext(TQuotaContext);
 
   useEffect(() => {
     // Web3 Browswer Detection
@@ -67,11 +44,9 @@ const ConnectButton = () => {
         axios
           .get(`https://relayed-service.herokuapp.com/user/newuser/${accountsRequest[0]}`)
           .then((user) => {
-            if (user.data[0].newUser) {
+            if (user.data.newUser) {
               setNewUser(true);
             }
-            setQuota(user.data[0].quota.remainingQuota);
-            setTotalQuota(user.data[0].quota.totalQuota);
           });
         setConnected(true);
         return;
@@ -87,3 +62,25 @@ const ConnectButton = () => {
 };
 
 export default ConnectButton;
+
+const SButton = styled.div`
+  height: 3rem;
+  width: 13rem;
+  padding: 0 2.5rem;
+  border: 2px solid #939393;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  user-select: none;
+  cursor: pointer;
+
+  :hover {
+    border: 3px solid #b75dee;
+    /* background: linear-gradient(269.7deg, #3646d9 0.11%, #b75dee 91.18%); */
+
+    transition: all 250ms;
+  }
+`;
+

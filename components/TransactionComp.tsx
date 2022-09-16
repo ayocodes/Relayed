@@ -11,28 +11,6 @@ interface ITransactionProps {
   gas: number;
 }
 
-const SBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: ${({ theme }) => `4px solid ${theme.nav}`};
-  padding: 2rem 0;
-`;
-
-const Sstatus = styled.div`
-  display: flex;
-  width: 43rem;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const SText = styled.p`
-color: ${({theme}) => `${theme.text2}`};
-font-size: .9rem;
-`
-const SText2 = styled(Text)`
-padding-bottom: 7px;
-`
 const Transaction: React.FC<ITransactionProps> = ({
   transactionHash,
   EOAAccount,
@@ -62,3 +40,26 @@ const Transaction: React.FC<ITransactionProps> = ({
 };
 
 export default Transaction;
+
+const SBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: ${({ theme }) => `4px solid ${theme.nav}`};
+  padding: 2rem 0;
+`;
+
+const Sstatus = styled.div`
+  display: flex;
+  width: 43rem;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SText = styled.p`
+color: ${({theme}) => `${theme.text2}`};
+font-size: .9rem;
+`
+const SText2 = styled(Text)`
+padding-bottom: 7px;
+`

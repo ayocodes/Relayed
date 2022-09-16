@@ -6,6 +6,12 @@ interface IBoundProp {
   className?: any;
 }
 
+const Bound: React.FC<IBoundProp> = ({ className, children }) => {
+  return <SBound className={className}>{children}</SBound>;
+};
+
+export default Bound;
+
 const SBound = styled.div`
   width: 100%;
   display: flex;
@@ -18,8 +24,3 @@ const SBound = styled.div`
   padding: 1.8rem 3rem;
 `;
 
-const Bound: React.FC<IBoundProp> = ({ className, children }) => {
-  return <SBound className={className}>{children}</SBound>;
-};
-
-export default Bound;

@@ -8,11 +8,6 @@ interface IScaffoldProp {
   children: React.ReactNode;
 }
 
-const SScaffold = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const Scaffold: React.FC<IScaffoldProp> = ({ children }) => {
 
   return (
@@ -25,3 +20,8 @@ const Scaffold: React.FC<IScaffoldProp> = ({ children }) => {
 };
 
 export default Scaffold;
+const SScaffold = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
