@@ -14,8 +14,6 @@ import PayModal from "../components/PayModal";
 import Text from "../components/Text";
 import AccountContext from "../context/account";
 import ConnectContext from "../context/connect";
-import QuotaContext from "../context/quota";
-import TQuotaContext from "../context/totalquota";
 import AvatarContext from "../context/avatar";
 import axios from "axios";
 
@@ -24,11 +22,10 @@ const Dashboard: NextPage = () => {
   const [connected, setConnected] = useContext(ConnectContext);
   const [avatar, setAvatar] = useContext(AvatarContext);
   const [name, setName] = useState("");
-  // const [quota, setQuota] = useContext(QuotaContext);
-  // const [totalQuota, setTotalQuota] = useContext(TQuotaContext);
   const [modal, setModal] = useState(false);
   const [totalQuota, setTotalQuota] = useState(0);
   const [quota, setQuota] = useState(0);
+  const [daysLeft, setdaysLeft] = useState(0)
 
 
 
@@ -63,9 +60,13 @@ const Dashboard: NextPage = () => {
     axios
     .get(`https://relayed-service.herokuapp.com/user/newuser/${account}`)
     .then((user) => {
-      setQuota(user.data[0].quota.remainingQuota);
-      setTotalQuota(user.data[0].quota.totalQuota);
+      console.log(user)
+      setQuota(user.data.quota.remainingQuota);
+      setTotalQuota(user.data.quota.totalQuota);
+      setdaysLeft(user.data.quota.daysLeft);
     });
+
+
   });
 
 
@@ -111,7 +112,7 @@ const Dashboard: NextPage = () => {
             </SQdetails>
             <SQdetails>
               <img src="bullet.svg" alt="" />
-              <SText1>30 days left</SText1>
+              <SText1>{daysLeft} days left</SText1>
             </SQdetails>
           </Bound>
           <SBound>
